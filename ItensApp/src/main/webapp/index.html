@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+
+
+<table>
+
+  <tr ng-repeat="x in mydata" style ='bgcolor:cccccc'>
+    <td> {{ x.nome }} </td>
+    <td> {{ x.tipo }} </td>
+    <td> {{ x.preco }} </td>
+  
+</tr>
+</table>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  $http.get("/app/all")
+  .then(function(response) {
+      $scope.mydata = response.data;
+  });
+});
+</script>
+
+</body>
+</html>
+
